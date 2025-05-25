@@ -1,3 +1,5 @@
+import pickle
+import os
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -19,3 +21,9 @@ mod_dt.fit(X_train,y_train)
 prediction=mod_dt.predict(X_test)
 print('The accuracy of the Decision Tree is',"{:.3f}".format(metrics.accuracy_score(prediction,y_test)))
 
+
+# Save model
+os.makedirs("models", exist_ok=True)
+with open("models/decision_tree_model.pkl", "wb") as f:
+    pickle.dump(mod_dt, f)
+print("Model saved to models/decision_tree_model.pkl")
