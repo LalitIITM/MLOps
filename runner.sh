@@ -76,7 +76,6 @@ python main.py
 echo "📦 Saving model as pickle (V1)"
 mkdir -p models
 cp models/decision_tree_model.pkl models/decision_tree_model_v1.pkl 2>/dev/null || true
-dvc add models/decision_tree_model.pkl
 git add models/decision_tree_model.pkl.dvc .gitignore
 git commit -m "Train and save model for V1"
 git tag V1
@@ -99,7 +98,6 @@ python main.py
 
 echo "📦 Saving model as pickle (V2)"
 cp models/decision_tree_model.pkl models/decision_tree_model_v2.pkl 2>/dev/null || true
-dvc add models/decision_tree_model.pkl
 git add models/decision_tree_model.pkl.dvc
 git commit -m "Train and save model for V2"
 git tag V2
