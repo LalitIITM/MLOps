@@ -67,7 +67,6 @@ echo "=============================================="
 dvc add data/iris.csv
 git add data/iris.csv.dvc .gitignore
 git commit -m "Add iris.csv as V1"
-git tag V1
 
 echo "=============================================="
 echo "🤖 Step 6: Train model and save it (V1)"
@@ -80,6 +79,7 @@ cp models/decision_tree_model.pkl models/decision_tree_model_v1.pkl 2>/dev/null 
 dvc add models/decision_tree_model.pkl
 git add models/decision_tree_model.pkl.dvc .gitignore
 git commit -m "Train and save model for V1"
+git tag V1
 
 echo "=============================================="
 echo "✂️ Step 7: Modify dataset to create V2"
