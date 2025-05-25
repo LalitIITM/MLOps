@@ -108,16 +108,21 @@ echo "=============================================="
 echo "🔍 Step 9: Compare data and model versions"
 echo "=============================================="
 
-# Compare data versions
+#Compare data versions
+echo "=============================================="
+echo "📊 Data file sizes for each version:"
+
 echo "🔄 Checking out V1 data..."
 git checkout V1
 dvc checkout
+dvc pull
 echo "V1 Data Size:"
 wc -l data/iris.csv
 
 echo "🔄 Checking out V2 data..."
 git checkout V2
 dvc checkout
+dvc pull
 echo "V2 Data Size:"
 wc -l data/iris.csv
 
@@ -127,11 +132,13 @@ echo "🧪 Model file checksums for each version:"
 echo "=============================================="
 git checkout V1
 dvc checkout
+dvc pull
 echo "V1 model checksum:"
 md5sum models/decision_tree_model.pkl || shasum models/decision_tree_model.pkl
 
 git checkout V2
 dvc checkout
+dvc pull
 echo "V2 model checksum:"
 md5sum models/decision_tree_model.pkl || shasum models/decision_tree_model.pkl
 
