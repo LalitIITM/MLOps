@@ -105,31 +105,35 @@ git commit -m "Train and save model for V2"
 git tag V2
 
 echo "=============================================="
-echo "🔍 Step 9: Compare versions"
+echo "🔍 Step 9: Compare data and model versions"
 echo "=============================================="
 
-# Checkout V1
-echo "🔄 Checking out V1..."
+# Compare data versions
+echo "🔄 Checking out V1 data..."
 git checkout V1
 dvc checkout
 echo "V1 Data Size:"
 wc -l data/iris.csv
 
-# Checkout V2
-echo "🔄 Checking out V2..."
+echo "🔄 Checking out V2 data..."
 git checkout V2
 dvc checkout
 echo "V2 Data Size:"
 wc -l data/iris.csv
 
+# Compare model versions
 echo "=============================================="
-echo "📜 Git Commit History:"
+echo "🧪 Model file checksums for each version:"
 echo "=============================================="
-git log --oneline --graph --decorate --all
-
+git checkout V1
 dvc checkout
-ls -l data/iris.csv
-ls -l models/decision_tree_model.pkl
+echo "V1 model checksum:"
+md5sum models/decision_tree_model.pkl || shasum models/decision_tree_model.pkl
+
+git checkout V2
+dvc checkout
+echo "V2 model checksum:"
+md5sum models/decision_tree_model.pkl || shasum models/decision_tree_model.pkl
 
 echo "=============================================="
 echo "✅ Demo completed: Data and model versioning with DVC"
