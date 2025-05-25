@@ -127,10 +127,9 @@ echo "📜 Git Commit History:"
 echo "=============================================="
 git log --oneline --graph --decorate --all
 
-echo "=============================================="
-echo "📂 DVC Tracked Files:"
-echo "=============================================="
-dvc list . --dvc-only
+dvc checkout
+ls -l data/iris.csv
+ls -l models/decision_tree_model.pkl
 
 echo "=============================================="
 echo "✅ Demo completed: Data and model versioning with DVC"
